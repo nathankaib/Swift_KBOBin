@@ -1,0 +1,35 @@
+#!/bin/csh
+
+# USERS MUST CHANGE THESE !!!!!!
+set SWIFT_DIR=/Users/nathankaib/Work/Swift_KBOBin
+set FORTRAN=gfortran
+set FFLAGS='-c -O3 -funroll-all-loops'
+set PRECOMP=/usr/bin/cpp
+set CPPFLAGS='-U_OPEN_POSITION'
+
+# To Profile the code:
+#set FFLAGS='-G -c'
+
+if (`ls *.F | wc -l` != 0 ) then
+    echo Doing precompiler
+    foreach file (*.F)
+        echo $file | set file2=`awk -F"." '{print$1}'`
+        echo $PRECOMP $CPPFLAGS "$file2".F "$file2"_CPP.f
+        $PRECOMP $CPPFLAGS "$file2".F "$file2"_CPP.f
+     end
+else
+    echo No need to precompile
+endif
+
+echo Doing Fortran
+foreach file (*.f)
+    echo $file | set file2=`awk -F"." '{print$1}'`
+    echo $file2
+    $FORTRAN $FFLAGS "$file2".f
+    ar vr $SWIFT_DIR/libswift.a  "$file2".o
+end
+
+rm *.o
+rm *CPP.f
+echo Done directory $PWD
+
