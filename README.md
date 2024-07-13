@@ -1,2 +1,4 @@
 # Swift_KBOBin
-This is the numerical simulation code used to model the dynamical evolution of TNO binaries in Campbell, Anderson, &amp; Kaib (2024). It is nearly identical to the SWIFT RMVS4 code designed by Levison & Duncan, which can be downloaded here: https://www.boulder.swri.edu/~hal/swift.html. 
+This is the numerical simulation code used to model the dynamical evolution of TNO binaries in Campbell, Anderson, &amp; Kaib (2024). It is nearly identical to the SWIFT RMVS4 code designed by Levison & Duncan, which can be downloaded here: https://www.boulder.swri.edu/~hal/swift.html. Thus, the documentation is nearly the same, and 99% of the operation of the code can be understood by reading the original SWIFT README files, which are available in this repository. 
+
+The changes to the original RMVS algorithm are understood as follows: We model the dynamical evolution of binaries by assuming the total binary mass is in the primary, which we consider the central body of our simulation. An arbitrary number of hypothetical secondary companions are simulated as test particles, whose initial conditions are listed in the tp.in file. 
