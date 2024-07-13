@@ -1,0 +1,16 @@
+#!/bin/csh
+
+# USERS MUST CHANGE THESE !!!!!!
+set SWIFT_DIR=/Users/nathankaib/Work/Swift_KBOBin
+set FORTRAN=gfortran
+#set FFLAGS='-O -recursive'
+set FFLAGS='-O3 -funroll-all-loops'
+
+foreach file (*.f)
+    echo $file | set file2=`awk -F"." '{print$1}'`
+    echo $file
+    $FORTRAN  $FFLAGS -o  $file2 $file -L/Users/nathankaib/Work/Swift_KBOBin -lswift
+
+end
+
+rm *.o
